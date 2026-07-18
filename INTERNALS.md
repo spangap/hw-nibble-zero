@@ -33,7 +33,7 @@ ignored under `--with`. So the hardware profile lives entirely in
 fragments. Two groups:
 
 - **Memory** — `CONFIG_ESPTOOLPY_FLASHSIZE_4MB`, `CONFIG_SPIRAM_MODE_QUAD`,
-  `CONFIG_SPANGAP_MAX_FIRMWARE_KB=3072`. These are values for symbols the
+  `CONFIG_SPANGAP_MAX_FIRMWARE_KB=3400`. These are values for symbols the
   platform/IDF own. The firmware floor keeps a `/state` partition alive on the
   4 MB chip (see README's memory table).
 - **LoRa** — the `CONFIG_LORA*` pins and radio flags, owned by
@@ -48,9 +48,9 @@ the community `nibble-connect` Meshtastic variant
 PlatformIO board `esp32-s3-zero`. Nobody has flashed reticulous on a Nibble Zero
 through this straddle yet. Known things to confirm on real hardware:
 
-- **4 MB flash is tight.** app+fixed is ~2.8 MB; `/state` gets ~1 MB and there is
-  no room for an A/B OTA pair. If your module is larger, raise the flash-size and
-  firmware-floor Kconfig together.
+- **4 MB flash is tight.** The firmware floor sits at 3.32 MB, so `/state` gets
+  only ~696 KB and there is no room for an A/B OTA pair. If your module is
+  larger, raise the flash-size and firmware-floor Kconfig together.
 - **NeoPixel pin ambiguity** — GPIO 21 (variant) vs GPIO 17 (Retia blog). Left
   unwired; resolve before enabling.
 - **Nibble revisions** — the "Nibble", "Nibble Connect" and "Nibble Zero" share a

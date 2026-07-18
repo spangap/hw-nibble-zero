@@ -29,7 +29,7 @@ against your actual unit before an RF or partition run:
 
 - **Flash size.** The PlatformIO target for this board is `esp32-s3-zero`, i.e.
   the Waveshare ESP32-S3-Zero module = **4 MB flash / 2 MB quad PSRAM**. 4 MB is
-  tight for the reticulous buildable (app+fixed is ~2.8 MB, leaving only ~1 MB
+  tight for the reticulous buildable (app+fixed is ~2.8 MB, leaving only ~696 KB
   for `/state` and no room for an A/B OTA pair). If your unit carries a larger
   module (e.g. N8R2 / N16R8), bump `CONFIG_ESPTOOLPY_FLASHSIZE_*` and
   `CONFIG_SPANGAP_MAX_FIRMWARE_KB` in `straddle.yaml`.
@@ -104,7 +104,7 @@ straddle / IDF:
 | Key | Value | Why |
 |---|---|---|
 | `CONFIG_ESPTOOLPY_FLASHSIZE_4MB` | `y` | 4 MB flash (ESP32-S3-Zero) — **verify** |
-| `CONFIG_SPANGAP_MAX_FIRMWARE_KB` | `3328` | state floor at 3.25 MB: the ~2.55 MB reticulous binary fits the 0x290000 `app` slot below it with ~73 KB margin; `/state` fills the remaining ~768 KB. Without it `app` eats all 4 MB — leaving **no `/state`** |
+| `CONFIG_SPANGAP_MAX_FIRMWARE_KB` | `3400` | state floor at 3.32 MB: the ~2.55 MB reticulous binary fits the 0x290000 `app` slot below it with ~73 KB margin; `/state` fills the remaining ~696 KB. Without it `app` eats all 4 MB — leaving **no `/state`** |
 | `CONFIG_SPIRAM_MODE_QUAD` | `y` | the S3FH4R2 carries 2 MB PSRAM in **quad** mode, not octal |
 
 The platform's usual "octal PSRAM" assumption (the T-Deck's S3R8) does **not**

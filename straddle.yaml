@@ -41,12 +41,12 @@ kconfig:
   # begins; /state then fills the rest of the real 4 MB chip. WITHOUT this the
   # floor defaults to the whole flash container, so `app` expands to fill all
   # 4 MB and NO /state partition exists (the device has nowhere to store user
-  # data). `app` is sized as align_down(floor - 0x10000 - fixed(0x97000), 64KB):
-  # at 3.25 MB the full reticulous binary (~2.55 MB) fits the resulting 0x290000
-  # app slot with ~73 KB of margin, and /state gets the remaining ~768 KB.
+  # data). `app` is sized as align_down(floor - 0x10000 - fixed(0xa7000), 64KB):
+  # at 3.32 MB the full reticulous binary (~2.55 MB) fits the resulting 0x290000
+  # app slot with ~73 KB of margin, and /state gets the remaining ~696 KB.
   # Changing this relocates /state → existing devices factory-reset on the next
   # boot, so warn users before bumping it.
-  - CONFIG_SPANGAP_MAX_FIRMWARE_KB=3328
+  - CONFIG_SPANGAP_MAX_FIRMWARE_KB=3400
   - CONFIG_SPIRAM_MODE_QUAD=y
   # One SX1262 LoRa modem on its own SPI bus (separate from the flash bus).
   # Pins per the Nibble Zero (Seeed Wio-SX1262 module) pin map. The SX1262 drives
